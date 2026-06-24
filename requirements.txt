@@ -1,0 +1,8 @@
+# Core
+PyYAML>=6.0
+requests>=2.31.0
+
+# LLM providers (install only the one(s) you use)
+anthropic>=0.40.0
+openai>=1.40.0
+google-genai>=0.3.0

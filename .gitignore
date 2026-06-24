@@ -1,0 +1,9 @@
+# NOTE: config.yaml is safe to commit. It contains no secrets (all keys are read from
+# environment variables via ${VAR}). GitHub Actions needs it committed to run.
+__pycache__/
+*.pyc
+.env
+output/
+*.local.*
+.venv/
+.pytest_cache/
