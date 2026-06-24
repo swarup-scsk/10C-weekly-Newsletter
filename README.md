@@ -125,3 +125,11 @@ python -m pytest -q
 - If you switch to Notion and your `Status` property is a *select* rather than a *status* type,
   change the payload in `src/publish/notion_publisher.py` from `{"status": {...}}` to
   `{"select": {...}}`.
+
+## Using a non-browsing model (e.g. DeepSeek) + Tavily
+
+DeepSeek has no built-in web search. Set `research.search.provider: tavily` and add a
+`TAVILY_API_KEY` secret (free tier ~1,000 searches/month). The pipeline then asks the model for
+search queries, runs them through Tavily, and feeds the real results back for the model to
+synthesise and cite. Set the provider to `deepseek` and model to `deepseek-v4-flash`, with
+`DEEPSEEK_API_KEY` as a secret. The base URL is https://api.deepseek.com (OpenAI-compatible).

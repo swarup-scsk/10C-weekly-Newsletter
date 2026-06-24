@@ -29,3 +29,9 @@ touching code.
 ### YYYY-MM-DD — vX.Y.Z (short label)
 - What changed and why.
 -->
+
+### 2026-06-24 — v0.2.0 (DeepSeek + Tavily)
+- Added `research_queries.md`: asks a non-browsing model (DeepSeek) to propose web search
+  queries. Used only in the search-augmented research path.
+- `research.md` unchanged, but in search-augmented mode the pipeline appends a "Search results
+  to use" block (real Tavily results) and instructs the model to cite only those sources.

@@ -1,6 +1,6 @@
 """Provider registry / factory.
 
-`get_provider("anthropic", "claude-opus-4-8")` returns a ready provider instance.
+`get_provider("deepseek", "deepseek-v4-flash")` returns a ready provider instance.
 Register new providers by adding them to `_REGISTRY`.
 """
 from __future__ import annotations
@@ -11,6 +11,7 @@ _REGISTRY = {
     "anthropic": ("anthropic_provider", "AnthropicProvider"),
     "openai": ("openai_provider", "OpenAIProvider"),
     "gemini": ("gemini_provider", "GeminiProvider"),
+    "deepseek": ("deepseek_provider", "DeepSeekProvider"),
 }
 
 

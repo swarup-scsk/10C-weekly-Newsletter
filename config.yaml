@@ -20,15 +20,22 @@ newsletter:
 # --- Pipeline stages. Each stage names a provider + model and can be swapped independently. ---
 
 research:
-  provider: gemini
-  model: "gemini-3.5-flash"
-  web_search: true
+  provider: deepseek           # anthropic | openai | gemini | deepseek
+  model: "deepseek-v4-flash"
+  # DeepSeek cannot browse, so research uses the search tool below to fetch real sources.
+  web_search: true             # used only if the provider supports native search
   max_searches: 8
   prompt_file: "prompts/research.md"
+  query_prompt_file: "prompts/research_queries.md"
+  search:
+    provider: tavily           # tavily | none
+    days: 7
+    num_queries: 6
+    max_results_per_query: 5
 
 generate:
-  provider: gemini
-  model: "gemini-3.5-flash"
+  provider: deepseek           # can differ from the research provider
+  model: "deepseek-v4-flash"
   prompt_file: "prompts/generate.md"
   system_file: "prompts/voice_system.md"
 
