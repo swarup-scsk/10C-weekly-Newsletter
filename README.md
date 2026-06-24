@@ -133,3 +133,18 @@ DeepSeek has no built-in web search. Set `research.search.provider: tavily` and 
 search queries, runs them through Tavily, and feeds the real results back for the model to
 synthesise and cite. Set the provider to `deepseek` and model to `deepseek-v4-flash`, with
 `DEEPSEEK_API_KEY` as a secret. The base URL is https://api.deepseek.com (OpenAI-compatible).
+
+## Public sharing via GitHub Pages
+
+Each committed issue is published to a public website so teammates can read it with a plain
+link, no GitHub account needed.
+
+One-time setup:
+1. Repo -> Settings -> Pages -> under "Build and deployment", set Source to **GitHub Actions**.
+2. That's it. The `pages.yml` workflow runs whenever an issue is committed (or on manual
+   trigger), builds `issues/*.md` into a small site, and deploys it.
+
+Your site lives at `https://<your-username>.github.io/<repo-name>/`. The index lists every
+issue newest-first; share either the index link or an individual issue's link with the team.
+
+Note: on a free plan, GitHub Pages sites are publicly viewable by anyone with the link.
