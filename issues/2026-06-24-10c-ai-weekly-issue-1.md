@@ -34,19 +34,19 @@ On 18 June at the AWS New York Summit, Amazon announced AgentCore Harness for Be
 z.AI released GLM-5.2, an open-source model with a 1 million token context window, matching the capacity of Anthropic’s Claude Opus 4.8 and OpenAI’s GPT 5.5. The model is available for on-premises deployment. (Business Insider, 21 June 2026)  
 [Link](https://www.businessinsider.com/what-is-glm-5-2-chinese-ai-coding-model-2026-6)
 
-Why it matters to us: European enterprises in regulated sectors can now evaluate a capable long-context model that does not require sending data to US API providers. This increases procurement flexibility and strengthens negotiation leverage with incumbent vendors.
+_Why it matters to us_: European enterprises in regulated sectors can now evaluate a capable long-context model that does not require sending data to US API providers. This increases procurement flexibility and strengthens negotiation leverage with incumbent vendors.
 
 **Regulation and governance**
 
 Eurocommerce, whose members include Amazon, H&M, Inditex, and Ikea, asked EU tech chief Henna Virkkunen to exempt AI-generated advertisements from labelling requirements under the EU AI Act. The association argues that mandatory labels would undermine the effectiveness of AI-driven personalisation in retail marketing. (Reuters, 19 June 2026)  
 [Link](https://www.reuters.com/legal/litigation/ai-generated-ads-should-be-exempt-eu-transparency-rules-retail-association-says-2026-06-19/)
 
-Why it matters to us: This is the first major industry push to narrow the AI Act’s transparency rules on content. Retail and consumer goods clients with large-scale AI ad campaigns will need to monitor the regulatory outcome before designing compliance processes.
+_Why it matters to us_: This is the first major industry push to narrow the AI Act’s transparency rules on content. Retail and consumer goods clients with large-scale AI ad campaigns will need to monitor the regulatory outcome before designing compliance processes.
 
 The US Department of Commerce opened the first proposal round under the American AI Exports Program. Industry consortia can submit export packages for the full US AI stack by 30 June, with priority government advocacy and potential federal financing. (Pillsbury Winthrop Shaw Pittman law firm alert, 18 June 2026)  
 [Link](https://www.pillsburylaw.com/en/news-and-insights/doc-american-ai-exports-program.html)
 
-Why it matters to us: European clients that depend on US hardware or cloud AI platforms should watch this program. If the US government actively promotes stack-level exports, it may change how European regulators view dependency on US technology and could trigger countermeasures or diversification strategies.
+_Why it matters to us_: European clients that depend on US hardware or cloud AI platforms should watch this program. If the US government actively promotes stack-level exports, it may change how European regulators view dependency on US technology and could trigger countermeasures or diversification strategies.
 
 **Enterprise and industry**
 
