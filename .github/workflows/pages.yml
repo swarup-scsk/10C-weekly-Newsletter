@@ -1,4 +1,7 @@
-name: Publish to GitHub Pages
+name: Publish site to public repo
+
+# Builds issues/*.md into a static site and pushes it to a SEPARATE PUBLIC repo,
+# which serves it via GitHub Pages. This keeps this repo (code + drafts) private.
 
 on:
   push:
@@ -9,35 +12,40 @@ on:
       - ".github/workflows/pages.yml"
   workflow_dispatch: {}
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: pages
-  cancel-in-progress: true
-
 jobs:
-  build:
+  publish-site:
     runs-on: ubuntu-latest
+    env:
+      # EDIT THIS to your public site repo, in the form owner/repo:
+      SITE_REPO: "swarup-scsk/10c-ai-weekly-site"
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - run: pip install markdown
-      - run: python site/build_site.py issues _site
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: _site
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Build the site
+        run: |
+          pip install markdown
+          python site/build_site.py issues _site
+          touch _site/.nojekyll
+
+      - name: Push site to the public repo
+        env:
+          SITE_REPO_TOKEN: ${{ secrets.SITE_REPO_TOKEN }}
+        run: |
+          git clone "https://x-access-token:${SITE_REPO_TOKEN}@github.com/${SITE_REPO}.git" site_repo
+          # replace published content (keep the .git folder)
+          find site_repo -mindepth 1 -maxdepth 1 -not -name '.git' -exec rm -rf {} +
+          cp -r _site/. site_repo/
+          cd site_repo
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No site changes to publish."
+          else
+            git -c user.name="github-actions[bot]" \
+                -c user.email="github-actions[bot]@users.noreply.github.com" \
+                commit -m "Publish newsletter site: $(date +%F)"
+            git push
+          fi

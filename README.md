@@ -134,17 +134,23 @@ search queries, runs them through Tavily, and feeds the real results back for th
 synthesise and cite. Set the provider to `deepseek` and model to `deepseek-v4-flash`, with
 `DEEPSEEK_API_KEY` as a secret. The base URL is https://api.deepseek.com (OpenAI-compatible).
 
-## Public sharing via GitHub Pages
+## Public sharing via a separate public site repo
 
-Each committed issue is published to a public website so teammates can read it with a plain
-link, no GitHub account needed.
+This repo (code + drafts) stays private. A second, public repo holds only the finished
+newsletter and serves it via GitHub Pages, so teammates read it with a plain link.
 
 One-time setup:
-1. Repo -> Settings -> Pages -> under "Build and deployment", set Source to **GitHub Actions**.
-2. That's it. The `pages.yml` workflow runs whenever an issue is committed (or on manual
-   trigger), builds `issues/*.md` into a small site, and deploys it.
+1. Create a new **public** repo, e.g. `10c-ai-weekly-site` (empty).
+2. Create a fine-grained Personal Access Token with **Contents: Read and write** on that site
+   repo only. In THIS repo, add it as a secret named `SITE_REPO_TOKEN`
+   (Settings -> Secrets and variables -> Actions).
+3. In `.github/workflows/pages.yml`, set `SITE_REPO` to your public repo (e.g.
+   `swarup-scsk/10c-ai-weekly-site`).
+4. On the PUBLIC repo: Settings -> Pages -> Build and deployment -> Source: **Deploy from a
+   branch** -> Branch: `main` -> `/ (root)`.
 
-Your site lives at `https://<your-username>.github.io/<repo-name>/`. The index lists every
-issue newest-first; share either the index link or an individual issue's link with the team.
+After that, every committed issue triggers `pages.yml`, which builds the site and pushes it to
+the public repo; Pages serves it at `https://<your-username>.github.io/<site-repo>/`.
 
-Note: on a free plan, GitHub Pages sites are publicly viewable by anyone with the link.
+Note: the public site is viewable by anyone with the link. Your pipeline code and drafts remain
+private in this repo.
