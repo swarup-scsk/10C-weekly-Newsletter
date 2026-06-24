@@ -1,0 +1,59 @@
+# 10C AI Weekly — configuration
+# Copy to config.yaml and adjust. Values like ${VAR} are read from environment variables
+# (set as GitHub Actions secrets in production, or a local .env for development).
+
+newsletter:
+  title: "10C AI Weekly"
+  audience: "the 10C consulting team, SCSK / Sumitomo Europe"
+  timezone: "Europe/London"
+  # Issue numbers are computed as: first_issue_number + whole weeks since first_issue_date.
+  # This is stateless, so it works in CI without storing a counter.
+  first_issue_date: "2026-06-24"
+  first_issue_number: 1
+  # Sectors/topics the research should bias toward. Edit freely.
+  focus: >
+    Enterprise AI, Industry 4.0 and digital transformation relevant to a consulting team
+    advising large European enterprises in manufacturing, energy, logistics, healthcare and
+    financial services. Include EU regulation (e.g. EU AI Act), major model and tooling
+    changes, and real enterprise deployments.
+
+# --- Pipeline stages. Each stage names a provider + model and can be swapped independently. ---
+
+research:
+  provider: gemini
+  model: "gemini-3.5-flash"
+  web_search: true
+  max_searches: 8
+  prompt_file: "prompts/research.md"
+
+generate:
+  provider: gemini
+  model: "gemini-3.5-flash"
+  prompt_file: "prompts/generate.md"
+  system_file: "prompts/voice_system.md"
+
+publish:
+  target: notion               # notion | markdown_file
+  notion:
+    database_id: "${NOTION_DATABASE_ID}"
+    title_property: "Name"
+    status_property: "Status"
+    draft_value: "Draft"
+    date_property: "Date"
+  markdown_file:
+    dir: "output"              # used when target = markdown_file (and in --dry-run)
+
+notify:
+  channel: email               # email | slack | none
+  email:
+    to: "swarup.kar@scskeu.com"
+    sender: "${SMTP_FROM}"
+    smtp_host: "${SMTP_HOST}"
+    smtp_port: 587
+    smtp_user: "${SMTP_USER}"
+    smtp_password: "${SMTP_PASSWORD}"
+  slack:
+    webhook_url: "${SLACK_WEBHOOK_URL}"
+
+# API keys are read from the environment, never stored here:
+#   ANTHROPIC_API_KEY, OPENAI_API_KEY, GEMINI_API_KEY, NOTION_API_KEY
