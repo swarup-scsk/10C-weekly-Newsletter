@@ -12,6 +12,14 @@ source link. If an item is flagged as having a weak source, keep the flag emoji 
 RESEARCH BRIEF:
 {research_brief}
 
+LINK FORMATTING (critical, applies everywhere):
+- Every link MUST be a Markdown hyperlink in the form [descriptive text](URL).
+- NEVER paste a bare URL on its own (e.g. "https://example.com"). NEVER write the link text as
+  the word "Link" or as the raw URL. The link text must describe the destination, normally the
+  publication name or the article title.
+- Example of correct: ([Reuters, 19 June 2026](https://www.reuters.com/...))
+- Example of WRONG: (Source: Reuters, 19 June 2026: https://www.reuters.com/...)
+
 Produce a single Markdown document with EXACTLY this structure and nothing else:
 
 # {title}
@@ -36,12 +44,12 @@ have a corresponding detailed section below.]
 ## Headline of the week
 
 [One short opening paragraph giving plain context for the most important theme this week,
-including one verified statistic with a source link if available.]
+including one verified statistic with a Markdown source link if available.]
 
 [Then 1 or 2 individual stories. For EACH story:]
-**[The actual published article headline, in bold]**
-*[A one-sentence sub-headline in italics explaining what it is, with the source link in
-parentheses.]*
+**[The actual published article headline as a Markdown link to the source](URL)**
+*[A one-sentence sub-headline in italics explaining what it is. Name the source and date in
+plain text here, with no bare URL since the headline above already links to it.]*
 
 10C take: [2 to 3 plain sentences on what this means for our clients and our work. One 10C
 take per story, not a shared one.]
@@ -54,8 +62,9 @@ Short explanations of the other developments worth knowing this week.
 
 [For each remaining development, a bolded category label on its own line
 (Regulation and governance / Enterprise and industry / Models and tools / Proof point),
-then an explanatory paragraph of 3 to 5 sentences in plain educational language with the
-source link, then a line beginning "Why it matters to us:" with one or two sentences.]
+then an explanatory paragraph of 3 to 5 sentences in plain educational language. End the
+paragraph with the source as a Markdown link in parentheses, e.g. ([Reuters, 19 June 2026](URL)).
+Then a line beginning "Why it matters to us:" with one or two sentences.]
 
 ---
 
@@ -87,7 +96,10 @@ Reply with your answer. We will feature a selection next week.
 
 ## Worth a read
 
-[2 or 3 link-only items: an italic title, a short clause of context, and the source link.]
+[2 or 3 items. Each is a single bullet where the article title is a Markdown link, followed by
+a short clause of context and the source name. Format:
+- [Article title](URL) — short context (Source name).
+Do not put a bare URL anywhere.]
 
 ---
 
@@ -99,3 +111,4 @@ WRITING RULES (apply the system voice rules, plus):
 - Do not invent anything not in the research brief.
 - Do NOT include the "One thing to try" section. It has been removed from the template.
 - Keep total read time around 4 to 5 minutes.
+- Re-read your draft and confirm there are no bare URLs: every link is [text](URL).

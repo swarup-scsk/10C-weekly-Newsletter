@@ -49,6 +49,19 @@ PAGE_TMPL = """<!doctype html>
 """
 
 
+
+_BARE_URL = re.compile(r'(?<![\(<\]])\bhttps?://[^\s<>()\]]+')
+
+
+def _autolink_bare_urls(text: str) -> str:
+    """Wrap bare http(s) URLs in <...> so Markdown turns them into clickable links.
+
+    URLs already inside [text](url) or <url> are left untouched. This is a safety net; the
+    generate prompt should already produce proper [text](url) links.
+    """
+    return _BARE_URL.sub(lambda m: "<" + m.group(0).rstrip(".,;:") + ">", text)
+
+
 def _date_from_name(name: str) -> str:
     m = re.match(r"(\d{4}-\d{2}-\d{2})", name)
     if not m:
@@ -75,7 +88,7 @@ def build(issues_dir: Path, out_dir: Path) -> None:
     for f in files:
         text = f.read_text(encoding="utf-8")
         md.reset()
-        body_html = md.convert(text)
+        body_html = md.convert(_autolink_bare_urls(text))
         page_title = _title_from_md(text, f.stem)
         date_str = _date_from_name(f.name)
         out_name = f.stem + ".html"
