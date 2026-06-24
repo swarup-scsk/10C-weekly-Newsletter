@@ -2,100 +2,98 @@
 
 **Issue #1 · Wednesday, 24 June 2026**
 
-*This issue covers the launch of a managed agent orchestration service on AWS, regulatory lobbying on AI-generated ads in Europe, new open-source long-context models, and adoption trends across manufacturing and consumer apps.*
+*This issue covers the convergence of AI infrastructure spending and enterprise adoption, emerging cost realities, regulatory pushback, and what these mean for industrial and financial services clients.*
 
 ---
 
 ## TL;DR
 
-1. AWS launched AgentCore Harness, a managed service that reduces AI agent development to two API calls, handling concurrency and state. See *Headline of the week*.
-2. Eurocommerce asked the EU to exempt AI-generated advertisements from transparency labelling under the AI Act, signalling where industry pushback will concentrate. See *The Briefs*.
-3. Bloomberg reports that Europe is betting on AI to replace its retiring manufacturing workforce, with policy support accelerating adoption. See *The Briefs*.
-4. Sensor Tower projects that global time spent on generative AI apps will double in 2026, with ChatGPT reaching one billion monthly active users. See *The Briefs*.
+1. Industrial manufacturing M&A reached $173 billion over the past year, driven by AI infrastructure, grid modernisation and defence spending. See *Headline of the week*.
+2. Samsung rolled out OpenAI’s ChatGPT Enterprise and Codex to its entire South Korean workforce, providing a validated case for large-scale generative AI adoption in manufacturing. See *The Briefs*.
+3. Microsoft reduced its internal use of Anthropic’s Claude Code after per-seat costs exceeded $1,400 per user per month, highlighting the need for careful cost scoping of AI coding agents. See *Headline of the week*.
+4. The Eurocommerce retail association is lobbying the EU to exempt AI-generated ads from transparency rules in the AI Act, signalling potential regulatory uncertainty for marketing and content AI. See *The Briefs*.
 
 ---
 
 ## Headline of the week
 
-On 18 June at the AWS New York Summit, Amazon announced AgentCore Harness for Bedrock. This managed service lets developers create multi-agent workflows by making two API calls instead of stitching together custom infrastructure for concurrency, memory, identity, and state. The move turns agent orchestration into an operational layer that platform teams can treat as a commodity.
+**AI infrastructure is reshaping industrial capital allocation and enterprise tooling decisions.** PwC’s 2026 midyear outlook reported that industrial manufacturing M&A activity reached $173 billion over the past year, a 28% increase from $135 billion in fiscal 2025, according to Manufacturing.net. The primary drivers were the convergence of AI infrastructure, grid modernisation, and defence/resilience investments. At the same time, a major enterprise cost reality check emerged: Microsoft removed its internal rollout of Anthropic’s Claude Code after discovering the per-seat cost exceeded $1,400 per user per month when factoring in context windows and agents, as reported by The Jerusalem Post.
 
-**Why AWS AgentCore Harness Is A Big Deal For Enterprise Agents**  
-*Forbes report on the launch and its implications for enterprise multi-agent systems (Forbes, 21 June 2026)*  
-[Link](https://www.forbes.com/sites/janakirammsv/2026/06/21/why-aws-agentcore-harness-is-a-big-deal-for-enterprise-agents/)
+**What's Fueling Industrial Manufacturing's M&A Surge**  
+*A PwC report finds that AI infrastructure and grid modernisation drove a 28% increase in industrial M&A to $173 billion over the past year.* (Source: Manufacturing.net, 19 June 2026: https://www.manufacturing.net/operations/news/22969238/whats-fueling-industrial-manufacturings-ma-surge)
 
-10C take: For clients building agent-based solutions for customer service, supply chain planning, or compliance monitoring, this reduces the need to build bespoke middleware. However, it also creates a new dependency on AWS’s platform. We should advise clients to design agent logic and data flows in a portable way, using the harness as a convenience layer rather than an irreversible architecture choice.
+10C take: For clients in manufacturing and energy, this confirms that AI infrastructure is now a primary driver of M&A and capital allocation. Investment priorities are shifting: companies are acquiring not just for scale but for AI-enabled capabilities in grid management, defence systems, and smart factory operations. Consultants should help clients assess how their own M&A targets and internal investment plans align with this trend.
+
+**Microsoft reduces its reliance on Claude**  
+*Microsoft removed internal use of Anthropic’s Claude Code from thousands of employees after finding per-seat costs above $1,400 per user per month, signalling a shift from AI hype to cost-conscious adoption.* (Source: The Jerusalem Post, 22 June 2026: https://www.jpost.com/business-and-innovation/article-900131)
+
+10C take: This is a critical reality check for any enterprise evaluating advanced AI coding agents. The cost per user can quickly exceed internal ROI thresholds unless usage is tightly scoped to high-value tasks. When advising clients on AI tooling procurement, we must model total cost of ownership including context windows and agent usage, not just licence fees.
 
 ---
 
 ## The Briefs
 
-**Models and tools**
+**Proof point**
 
-z.AI released GLM-5.2, an open-source model with a 1 million token context window, matching the capacity of Anthropic’s Claude Opus 4.8 and OpenAI’s GPT 5.5. The model is available for on-premises deployment. (Business Insider, 21 June 2026)  
-[Link](https://www.businessinsider.com/what-is-glm-5-2-chinese-ai-coding-model-2026-6)
+Samsung Electronics deployed OpenAI’s ChatGPT Enterprise and Codex to its entire South Korean workforce and selected international divisions, marking the first large-scale enterprise rollout of OpenAI tools in a global manufacturing company. This provides a validated reference case that consultants can use to benchmark similar rollouts for European industrial clients. (Source: PYMNTS.com, 22 June 2026: https://www.pymnts.com/news/artificial-intelligence/2026/samsung-rolls-out-openai-tools-to-workforce-in-major-enterprise-push/)
 
-_Why it matters to us_: European enterprises in regulated sectors can now evaluate a capable long-context model that does not require sending data to US API providers. This increases procurement flexibility and strengthens negotiation leverage with incumbent vendors.
+Why it matters to us: The Samsung deployment gives our clients a concrete precedent for company-wide generative AI adoption. We can point to it when discussing implementation roadmaps, change management, and productivity metrics for manufacturing workforces.
 
 **Regulation and governance**
 
-Eurocommerce, whose members include Amazon, H&M, Inditex, and Ikea, asked EU tech chief Henna Virkkunen to exempt AI-generated advertisements from labelling requirements under the EU AI Act. The association argues that mandatory labels would undermine the effectiveness of AI-driven personalisation in retail marketing. (Reuters, 19 June 2026)  
-[Link](https://www.reuters.com/legal/litigation/ai-generated-ads-should-be-exempt-eu-transparency-rules-retail-association-says-2026-06-19/)
+Eurocommerce, the European retail association whose members include Amazon, H&M, Inditex and Ikea, is asking EU tech chief Henna Virkkunen to exempt AI-generated advertisements from transparency and labelling requirements in the EU AI Act. This lobbying effort signals that parts of the AI Act’s transparency rules may be contested by major businesses, creating potential regulatory uncertainty for clients deploying AI in marketing, customer engagement, and content generation. (Source: Reuters, 19 June 2026: https://www.reuters.com/legal/litigation/ai-generated-ads-should-be-exempt-eu-transparency-rules-retail-association-says-2026-06-19/)
 
-_Why it matters to us_: This is the first major industry push to narrow the AI Act’s transparency rules on content. Retail and consumer goods clients with large-scale AI ad campaigns will need to monitor the regulatory outcome before designing compliance processes.
-
-The US Department of Commerce opened the first proposal round under the American AI Exports Program. Industry consortia can submit export packages for the full US AI stack by 30 June, with priority government advocacy and potential federal financing. (Pillsbury Winthrop Shaw Pittman law firm alert, 18 June 2026)  
-[Link](https://www.pillsburylaw.com/en/news-and-insights/doc-american-ai-exports-program.html)
-
-_Why it matters to us_: European clients that depend on US hardware or cloud AI platforms should watch this program. If the US government actively promotes stack-level exports, it may change how European regulators view dependency on US technology and could trigger countermeasures or diversification strategies.
-
-**Enterprise and industry**
-
-Bloomberg reports that as factory workers retire across Europe, the region is making AI-driven manufacturing a strategic priority. The approach leverages Europe’s advanced industrial base rather than competing on foundation models. (Bloomberg, 18 June 2026)  
-[Link](https://www.bloomberg.com/news/newsletters/2026-06-18/europe-wants-ai-in-manufacturing-before-its-workforce-retires)
-
-Why it matters to us: Manufacturing clients should expect accelerated AI adoption in production lines, quality control, and predictive maintenance, driven by demographic necessity and policy support. Consultants should help these clients build a roadmap that integrates AI with existing MES and PLC investments.
-
-Microsoft rolled out Anthropic’s Claude Code to thousands of employees in late 2025 but later reduced usage. The move signals a broader shift from AI hype to cost-conscious adoption within the company. (The Jerusalem Post, 22 June 2026)  
-[Link](https://www.jpost.com/business-and-innovation/article-900131)
-
-Why it matters to us: When one of the largest cloud vendors finds Claude uneconomical at scale, it reinforces the need for clients to measure total cost of ownership rigorously before committing to long-term LLM contracts. We should advise clients to run their own controlled pilots with cost tracking rather than assuming vendor benchmarks.
-
-At Zscaler’s Zenith Live 2026, the company extended its Zero Trust Exchange platform to manage AI agents, unmanaged devices, and multi-cloud workloads, focusing on data residency and supply chain security. (CSOonline, 21 June 2026)  
-[Link](https://www.csoonline.com/article/4187548/why-southeast-asia-cisos-need-zero-trust-as-their-ai-control-plane-ai-agents-data-borders-and-supply-chains.html)
-
-Why it matters to us: As AI agents become digital workers in regulated European sectors, clients will need a security architecture that enforces data residency and access policies across agents. Zero trust is becoming a prerequisite for compliant AI deployment, not a separate project.
+Why it matters to us: Clients using AI for customer-facing content should monitor this closely. If exemptions are granted, it could lower compliance burdens for retail and consumer goods; if denied, it could impose new labelling requirements that affect brand presentation and consumer trust.
 
 **Proof point**
 
-Sensor Tower’s State of AI 2026 report forecasts a doubling of user time on generative AI apps in the first half of 2026. ChatGPT has reached one billion monthly active users and consumer spending is at record highs. (Hotel News Resource aggregator, 22 June 2026)  
-[Link](https://www.hotelnewsresource.com/article141767.html) ⚠️ (Aggregator, original report not directly linked)
+JPMorgan’s AI Capex 2.0 report now expects total AI capital expenditure to reach US$5.5 trillion through 2030, up from a previous forecast of $5.1 trillion. Hyperscaler capex is projected to rise to around $650 billion in 2026 and potentially above $1.1 trillion in 2027. (Source: Moomoo, citing JPMorgan report, 18 June 2026. ⚠️ Aggregator/blog, primary source is JPMorgan but not independently verified: https://www.moomoo.com/community/feed/5-5t-ai-boom-meets-a-hawkish-fed-self-funding-116770673786890)
 
-Why it matters to us: Rapid consumer adoption creates pressure on enterprises to match user expectations for AI assistants in customer service, employee tools, and internal knowledge retrieval. This data helps justify pilot budgets when clients ask for evidence of user demand.
+Why it matters to us: These investment figures provide a macroeconomic foundation for client conversations about AI infrastructure spending, supply chain bottlenecks, and the long-term capital commitments driving data centre construction and power demand in Europe. Use them to frame discussions on energy strategy and capacity planning.
 
-At VivaTech 2026 in Paris, companies including Rebuilder AI, LVMH Dreamscape, Perfect Corp, and Stytrix demonstrated concrete generative AI applications for product design, virtual try-on, and personalised customer experience in fashion and beauty. (FashionUnited, 22 June 2026)  
-[Link](https://fashionunited.in/news/fairs/vivatech-2026-how-generative-ai-is-used-by-fashion-professionals/2026062254997)
+**Proof point**
 
-Why it matters to us: Luxury and retail clients can now point to tested, in-production use cases that move beyond prototypes. This helps de-risk similar proposals in sectors like consumer goods, hospitality, and healthcare.
+Inspira Enterprise announced a strategic partnership with ServiceNow, including a proven AI Control Tower deployment with over 50 onboarded AI agents and measurable productivity gains. This provides a concrete, quantified case study for clients evaluating enterprise AI orchestration platforms and agent-based automation in operations. (Source: Financial Times via PRNewswire, 22 June 2026: https://markets.ft.com/data/announce/detail?dockey=600-202606220100PR_NEWS_USPRX____IO86998-1)
+
+Why it matters to us: Clients asking about multi-agent platforms can reference this as a benchmark. The 50+ agent deployment shows what is achievable today on a single platform, helping us scope realistic pilots and set expectations for productivity improvements.
+
+**Models and tools**
+
+IBM joined the OpenAI Daybreak Cyber Partner Program and launched a new application security service (Project Lightwell) that applies OpenAI’s cyber capabilities to enterprise code review and vulnerability validation. This is backed by a $5 billion commitment from IBM and Red Hat. (Source: Let's Data Science, citing IBM press release, 23 June 2026. ⚠️ Aggregator, primary source is IBM press release not directly linked: https://letsdatascience.com/news/ibm-integrates-openai-cyber-ai-into-security-f5886e8e)
+
+Why it matters to us: This demonstrates a practical model for clients who want to embed frontier AI into existing security workflows without building from scratch. The partnership between a major system integrator and an AI vendor signals a growing go-to-market model that our clients can leverage.
+
+**Regulation and governance**
+
+The Zcash incident exposed a severe regulatory vacuum in auditing standards for AI tools in financial risk and digital assets. Forbes reports that existing controls cannot validate AI-driven code assurance in financial reporting. (Source: Forbes, 18 June 2026: https://www.forbes.com/sites/digital-assets/2026/06/18/how-the-zcash-crisis-highlights-an-auditing-blindspot/)
+
+Why it matters to us: For financial services clients, this highlights a growing compliance risk. AI tools used in code review, trading algorithms, or risk models may lack auditable assurance frameworks, creating exposure under financial regulations and the EU AI Act. We should guide clients toward audit-ready AI deployments.
+
+**Enterprise and industry**
+
+Delta Electronics (Thailand) showcased integrated smart manufacturing solutions incorporating automation, operational visibility dashboards, and sustainability performance tools at Manufacturing Expo 2026. This demonstration of integrated automation and sustainability in factory operations provides a reference for clients pursuing Industry 4.0 projects that combine operational efficiency with regulatory compliance on energy and emissions reporting. (Source: PR Newswire, 18 June 2026: https://www.prnewswire.com/apac/news-releases/delta-thailand-highlights-integrated-smart-and-green-manufacturing-solutions-for-intelligent-factory-operations-at-manufacturing-expo-2026-302803780.html)
+
+Why it matters to us: Clients in manufacturing and logistics are increasingly required to report both operational and sustainability metrics. Delta’s showcase illustrates how integrated dashboards can serve both purposes, helping us pitch combined smart factory and ESG solutions.
 
 ---
 
 ## Client lens
 
-This week’s developments highlight two cross-sector themes for our clients: managing the cost and lock-in of AI tooling, and preparing for regulation that will shape how AI can be used in customer-facing roles. Manufacturing clients should take the Bloomberg report as a signal to start workforce planning with AI augmentation in mind. Financial services and healthcare clients, who handle sensitive data, will benefit from the open-source model alternatives and zero-trust architectures now available. Retail clients need to track the Eurocommerce lobbying closely: if transparency rules are relaxed, the compliance burden shrinks, but if they remain, labelling workflows will be required.
+For manufacturing and energy clients, the convergence of AI-driven M&A, hyperscaler capex forecasts, and enterprise-scale deployments like Samsung’s signals that the competitive landscape is shifting. Incumbents who do not invest in AI infrastructure risk being acquired or displaced. For financial services clients, the Zcash incident and the Eurocommerce lobbying effort both underscore that regulation is still catching up with AI use cases. The EU AI Act’s implementation will be contested, and auditing standards remain weak. Opportunities for 10C lie in helping clients navigate this uncertainty: conducting AI readiness assessments, building cost models for tooling procurement, advising on compliance frameworks, and designing integrated smart factory solutions that address both efficiency and sustainability.
 
 ---
 
 ## Conversation Starter
 
-> “When even Microsoft pulls back on Anthropic’s Claude Code for cost reasons, it’s worth asking whether our preferred LLM partner has provided a total cost of ownership estimate that includes inference, fine-tuning, and retraining at scale.”
+> “With AI infrastructure now a primary driver of industrial M&A and JPMorgan forecasting $5.5 trillion in AI capex through 2030, how are you planning your own capital allocation for AI over the next 18 months? And given the cost realities we are seeing with AI coding agents, what metrics are you using to evaluate tooling ROI?”
 
-This opens a useful conversation about moving from proof-of-concept to production without overshooting the budget.
+This question opens a conversation about both investment strategy and operational pragmatism, two topics that are top of mind for most enterprise leaders today.
 
 ---
 
 ## Question of the week
 
-**How should we advise clients to compare open-source models (like GLM-5.2) with proprietary APIs when both are viable for long-context tasks?**
+**Which client industries are most exposed to the “auditing blindspot” for AI tools in financial reporting and code assurance, and how should we help them prepare?**
 
 Reply with your answer. We will feature a selection next week.
 
@@ -103,10 +101,10 @@ Reply with your answer. We will feature a selection next week.
 
 ## Worth a read
 
-- *Why AWS AgentCore Harness Is A Big Deal For Enterprise Agents* – Forbes analysis of the new managed orchestration layer on Bedrock. [Link](https://www.forbes.com/sites/janakirammsv/2026/06/21/why-aws-agentcore-harness-is-a-big-deal-for-enterprise-agents/)
-- *Europe Wants AI in Manufacturing Before Its Workforce Retires* – Bloomberg on demographic-driven AI adoption in industrial settings. [Link](https://www.bloomberg.com/news/newsletters/2026-06-18/europe-wants-ai-in-manufacturing-before-its-workforce-retires)
-- *AI-generated ads should be exempt from EU transparency rules, retail association says* – Reuters on Eurocommerce’s push to weaken AI Act labelling. [Link](https://www.reuters.com/legal/litigation/ai-generated-ads-should-be-exempt-eu-transparency-rules-retail-association-says-2026-06-19/)
+- *How The Zcash Crisis Highlights An Auditing Blindspot* – Forbes on the regulatory vacuum for AI tools in financial risk: https://www.forbes.com/sites/digital-assets/2026/06/18/how-the-zcash-crisis-highlights-an-auditing-blindspot/
+- *$5.5T AI Boom Meets a Hawkish Fed: Self-Funding Cycle, or Tech's Biggest Leveraged Bet?* – JPMorgan’s updated capex forecast (via Moomoo, source flagged as weak): https://www.moomoo.com/community/feed/5-5t-ai-boom-meets-a-hawkish-fed-self-funding-116770673786890
+- *Delta Thailand Highlights Integrated Smart and Green Manufacturing Solutions for Intelligent Factory Operations at Manufacturing Expo 2026* – Reference case for integrated Industry 4.0 and sustainability: https://www.prnewswire.com/apac/news-releases/delta-thailand-highlights-integrated-smart-and-green-manufacturing-solutions-for-intelligent-factory-operations-at-manufacturing-expo-2026-302803780.html
 
 ---
 
-*10C AI Weekly is produced for the 10C consulting team*
+*10C AI Weekly is produced for the 10C consulting team, SCSK / Sumitomo Europe. Archive: [Notion link]. If you have something for next week, reply to this note or post it in the channel.*
