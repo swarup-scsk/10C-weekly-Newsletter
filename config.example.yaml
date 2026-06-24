@@ -1,4 +1,4 @@
-# 10C AI Weekly — configuration
+# 10C AI Weekly - configuration
 # Copy to config.yaml and adjust. Values like ${VAR} are read from environment variables
 # (set as GitHub Actions secrets in production, or a local .env for development).
 
@@ -20,20 +20,23 @@ newsletter:
 # --- Pipeline stages. Each stage names a provider + model and can be swapped independently. ---
 
 research:
-  provider: anthropic          # anthropic | openai | gemini
-  model: "claude-opus-4-8"
+  provider: gemini             # anthropic | openai | gemini
+  model: "gemini-3.5-flash"
   web_search: true             # provider must support a web search / grounding tool
   max_searches: 8
   prompt_file: "prompts/research.md"
 
 generate:
-  provider: anthropic          # can differ from the research provider
-  model: "claude-opus-4-8"
+  provider: gemini             # can differ from the research provider
+  model: "gemini-3.5-flash"
   prompt_file: "prompts/generate.md"
   system_file: "prompts/voice_system.md"
 
 publish:
-  target: notion               # notion | markdown_file
+  target: github               # github | notion | markdown_file
+  github:
+    dir: "issues"              # issues are committed to this folder in the repo
+    branch: "main"
   notion:
     database_id: "${NOTION_DATABASE_ID}"
     title_property: "Name"
@@ -44,7 +47,9 @@ publish:
     dir: "output"              # used when target = markdown_file (and in --dry-run)
 
 notify:
-  channel: email               # email | slack | none
+  channel: none                # none | email | slack
+  # With GitHub publishing, the commit itself is your signal (GitHub can email you on each
+  # workflow run via your notification settings). Switch to email/slack here if you prefer.
   email:
     to: "swarup.kar@scskeu.com"
     sender: "${SMTP_FROM}"

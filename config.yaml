@@ -33,7 +33,10 @@ generate:
   system_file: "prompts/voice_system.md"
 
 publish:
-  target: notion               # notion | markdown_file
+  target: github               # github | notion | markdown_file
+  github:
+    dir: "issues"              # issues are committed to this folder in the repo
+    branch: "main"
   notion:
     database_id: "${NOTION_DATABASE_ID}"
     title_property: "Name"
@@ -44,7 +47,7 @@ publish:
     dir: "output"              # used when target = markdown_file (and in --dry-run)
 
 notify:
-  channel: email               # email | slack | none
+  channel: none                # none | email | slack
   email:
     to: "swarup.kar@scskeu.com"
     sender: "${SMTP_FROM}"

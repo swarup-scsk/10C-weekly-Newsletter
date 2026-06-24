@@ -9,6 +9,9 @@ def get_publisher(cfg, force_markdown_file: bool = False) -> Publisher:
     if target == "notion":
         from .notion_publisher import NotionPublisher
         return NotionPublisher(cfg.get("publish.notion", {}))
+    if target == "github":
+        from .github_publisher import GitHubPublisher
+        return GitHubPublisher(cfg.get("publish.github", {}))
     if target == "markdown_file":
         from .markdown_file import MarkdownFilePublisher
         out_dir = cfg.get("publish.markdown_file.dir", "output")

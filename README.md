@@ -1,9 +1,9 @@
 # 10C AI Weekly
 
 An automated, modular pipeline that researches the week's enterprise-AI developments, drafts
-the **10C AI Weekly** newsletter in a fixed editorial template and voice, publishes it to
-Notion as a **Draft**, and notifies the editor. The editor reviews and edits in Notion, sets
-the status to **Published**, and shares the page link with the team.
+the **10C AI Weekly** newsletter in a fixed editorial template and voice, and publishes it
+(by default, as a Markdown file committed to this repo). The editor reviews and edits it, then
+shares the link with the team. Notion and other targets are supported by changing one config line.
 
 The build is deliberately modular: every stage names its provider and model in `config.yaml`,
 so you can swap the LLM (Anthropic, OpenAI, Gemini, or your own) or the publish/notify target
@@ -22,8 +22,11 @@ research  ->  generate  ->  publish  ->  notify
    provider with web search, returning a verified Markdown research brief with sources.
 2. **generate** (`src/generate.py`) feeds that brief into `prompts/generate.md` (plus the voice
    rules in `prompts/voice_system.md`) to produce the final newsletter Markdown.
-3. **publish** (`src/publish/`) converts the Markdown to Notion blocks and creates a Draft page
-   in your database. (Or writes a local `.md` file with the `markdown_file` target / `--dry-run`.)
+3. **publish** (`src/publish/`) writes the issue where you've configured it:
+   - `github` (default): commits the issue as a Markdown file in the repo's `issues/` folder
+     and returns a github.com link. Edit it in the GitHub web editor, then share the link.
+   - `notion`: converts the Markdown to Notion blocks and creates a Draft page in a database.
+   - `markdown_file` / `--dry-run`: writes a local `.md` file for previewing.
 4. **notify** (`src/notify/`) emails or Slacks you a link to review.
 
 ## Project layout
@@ -43,24 +46,29 @@ tests/                   Converter unit tests + dry-run pipeline test (mock prov
 .github/workflows/       Weekly cron (Wednesday)
 ```
 
-## Setup checklist
+## Setup checklist (GitHub publishing — default)
 
-1. **Push this folder to a GitHub repo.**
-2. **Notion**
-   - Create an internal integration at https://www.notion.so/my-integrations and copy its
-     secret (this is `NOTION_API_KEY`).
-   - Create a database, e.g. "10C AI Weekly", with properties: `Name` (title), `Status`
-     (status type, with a `Draft` and a `Published` option), and `Date` (date).
-   - Share the database with your integration (Share -> add your integration).
-   - Copy the database ID from its URL (the 32-character string). That is `NOTION_DATABASE_ID`.
-3. **LLM key** for your chosen provider: `ANTHROPIC_API_KEY` (or `OPENAI_API_KEY` /
-   `GEMINI_API_KEY`).
-4. **Notifications** (optional): SMTP settings for email, or `SLACK_WEBHOOK_URL` for Slack.
-5. **Config:** copy `config.example.yaml` to `config.yaml`, set your providers/models and the
-   Notion property names, and commit it (it holds no secrets).
-6. **GitHub secrets:** in the repo, Settings -> Secrets and variables -> Actions, add the keys
-   from steps 2 to 4. The workflow reads them as environment variables.
-7. The workflow runs every **Wednesday 06:00 UTC**, or trigger it manually from the Actions tab.
+1. **Push this folder to a GitHub repo** (private is fine).
+2. **LLM key** for your chosen provider, e.g. `GEMINI_API_KEY` (or `ANTHROPIC_API_KEY` /
+   `OPENAI_API_KEY`). Gemini keys come from Google AI Studio.
+3. **Config:** copy `config.example.yaml` to `config.yaml`, set your provider/model, keep
+   `publish.target: github`, and commit it (it holds no secrets).
+4. **GitHub secret:** repo Settings -> Secrets and variables -> Actions -> add `GEMINI_API_KEY`
+   (and any others you use). The workflow already has permission to commit issues back.
+5. Run the workflow manually (Actions tab -> Run workflow) to test. A new file appears in
+   `issues/`. After that it runs every **Wednesday 06:00 UTC**.
+6. **Each week:** open the new file in `issues/`, click the pencil to edit in GitHub, commit,
+   then share the file's link with the team.
+
+   Note: a github.com file link is only viewable by people with access to the repo. If your
+   team is not on GitHub, enable GitHub Pages (or add them as repo collaborators) so they can
+   open the link. Ask if you want Pages set up.
+
+### Optional: publish to Notion instead
+
+Set `publish.target: notion` and provide `NOTION_API_KEY` + `NOTION_DATABASE_ID`. Create a
+database with `Name` (title), `Status` (status type with Draft/Published) and `Date` (date)
+properties, and share it with your Notion integration.
 
 ## Run locally
 
@@ -104,7 +112,7 @@ change in `prompts/PROMPT_LOG.md` so issues remain traceable.
 ## Tests
 
 ```bash
-pip install pytest
+pip install pytest pyyaml
 python -m pytest -q
 ```
 
@@ -112,5 +120,8 @@ python -m pytest -q
 
 - The web-search tool identifiers and citation shapes in each provider adapter are isolated at
   the top of their files. Confirm them against current provider docs before the first run.
-- If your Notion `Status` property is a *select* rather than a *status* type, change the payload
-  in `src/publish/notion_publisher.py` from `{"status": {...}}` to `{"select": {...}}`.
+- A github.com file link is only viewable by people with repo access. If your team is not on
+  GitHub, enable GitHub Pages or add them as collaborators so they can open the shared link.
+- If you switch to Notion and your `Status` property is a *select* rather than a *status* type,
+  change the payload in `src/publish/notion_publisher.py` from `{"status": {...}}` to
+  `{"select": {...}}`.
