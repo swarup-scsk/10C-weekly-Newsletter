@@ -134,23 +134,14 @@ search queries, runs them through Tavily, and feeds the real results back for th
 synthesise and cite. Set the provider to `deepseek` and model to `deepseek-v4-flash`, with
 `DEEPSEEK_API_KEY` as a secret. The base URL is https://api.deepseek.com (OpenAI-compatible).
 
-## Public sharing via a separate public site repo
+## Public sharing via GitHub Pages (this repo)
 
-This repo (code + drafts) stays private. A second, public repo holds only the finished
-newsletter and serves it via GitHub Pages, so teammates read it with a plain link.
+The repo is public, so it serves the newsletter directly via GitHub Pages. No
+separate site repo is needed.
 
-One-time setup:
-1. Create a new **public** repo, e.g. `10c-ai-weekly-site` (empty).
-2. Create a fine-grained Personal Access Token with **Contents: Read and write** on that site
-   repo only. In THIS repo, add it as a secret named `SITE_REPO_TOKEN`
-   (Settings -> Secrets and variables -> Actions).
-3. In `.github/workflows/pages.yml`, set `SITE_REPO` to your public repo (e.g.
-   `swarup-scsk/10c-ai-weekly-site`).
-4. On the PUBLIC repo: Settings -> Pages -> Build and deployment -> Source: **Deploy from a
-   branch** -> Branch: `main` -> `/ (root)`.
+One-time: repo Settings -> Pages -> Build and deployment -> Source: **GitHub Actions**.
 
-After that, every committed issue triggers `pages.yml`, which builds the site and pushes it to
-the public repo; Pages serves it at `https://<your-username>.github.io/<site-repo>/`.
+After that, every new issue (or manual edit) builds `issues/*.md` into a site and
+deploys it to https://swarup-scsk.github.io/10C-weekly-Newsletter/ via the "Publish to GitHub Pages" workflow, which runs
+automatically after the weekly newsletter workflow completes.
 
-Note: the public site is viewable by anyone with the link. Your pipeline code and drafts remain
-private in this repo.

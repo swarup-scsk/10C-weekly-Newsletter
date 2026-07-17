@@ -1,9 +1,13 @@
-name: Publish site to public repo
+name: Publish to GitHub Pages
 
-# Builds issues/*.md into a static site and pushes it to a SEPARATE PUBLIC repo,
-# which serves it via GitHub Pages. This keeps this repo (code + drafts) private.
+# Builds issues/*.md into a site and deploys it to GitHub Pages for THIS repo.
+# Runs after the newsletter workflow finishes (workflow_run avoids the GITHUB_TOKEN
+# "no chained workflows" restriction), on manual edits, or on manual dispatch.
 
 on:
+  workflow_run:
+    workflows: ["10C AI Weekly"]
+    types: [completed]
   push:
     branches: [main]
     paths:
@@ -12,40 +16,41 @@ on:
       - ".github/workflows/pages.yml"
   workflow_dispatch: {}
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
 jobs:
-  publish-site:
+  build-deploy:
+    # Skip if the triggering newsletter run failed (nothing new to publish).
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
-    env:
-      # EDIT THIS to your public site repo, in the form owner/repo:
-      SITE_REPO: "swarup-scsk/10c-ai-weekly-site"
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-
       - name: Build the site
         run: |
-          pip install markdown
+          pip install markdown requests
           python site/build_site.py issues _site
           touch _site/.nojekyll
-
-      - name: Push site to the public repo
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deployment
+        uses: actions/deploy-pages@v4
+      - name: Notify Teams channel
         env:
-          SITE_REPO_TOKEN: ${{ secrets.SITE_REPO_TOKEN }}
-        run: |
-          git clone "https://x-access-token:${SITE_REPO_TOKEN}@github.com/${SITE_REPO}.git" site_repo
-          # replace published content (keep the .git folder)
-          find site_repo -mindepth 1 -maxdepth 1 -not -name '.git' -exec rm -rf {} +
-          cp -r _site/. site_repo/
-          cd site_repo
-          git add -A
-          if git diff --cached --quiet; then
-            echo "No site changes to publish."
-          else
-            git -c user.name="github-actions[bot]" \
-                -c user.email="github-actions[bot]@users.noreply.github.com" \
-                commit -m "Publish newsletter site: $(date +%F)"
-            git push
-          fi
+          TEAMS_WEBHOOK_URL: ${{ secrets.TEAMS_WEBHOOK_URL }}
+          SITE_BASE_URL: "https://swarup-scsk.github.io/10C-weekly-Newsletter"
+        run: python site/notify_teams.py
