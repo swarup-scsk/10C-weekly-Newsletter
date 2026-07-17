@@ -99,4 +99,5 @@ Reply with your answer. We will feature a selection next week.
 
 ---
 
-*10C AI Weekly is produced for the 10C consulting team, SCSK / Sumitomo Europe. Archive: [Notion link]. If you have something for next week, reply to this note or post it in the channel.*
+*10C AI Weekly is not intended for external circulation. 
+Archive: [link](https://swarup-scsk.github.io/10C-weekly-Newsletter/).*
