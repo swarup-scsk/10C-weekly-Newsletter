@@ -88,4 +88,4 @@ Reply with your answer. We will feature a selection next week.
 
 ---
 
-*10C AI Weekly is produced for the 10C consulting team. This is not intended for external circulation*
+*10C AI Weekly is not intended for external circulation*
