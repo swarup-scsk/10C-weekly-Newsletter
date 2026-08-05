@@ -1,0 +1,3 @@
+The RESEARCH BRIEF section in your prompt is empty, so there is no verified research to write from. The writing rules require every statistic, development, and link to come from that brief, and forbid inventing anything. Without it, I cannot produce a truthful issue, and I will not fabricate news items or source links.
+
+Please paste the research brief content (headlines, sources, dates, statistics, links, flags) and I will write the full issue immediately with the exact structure you specified.
