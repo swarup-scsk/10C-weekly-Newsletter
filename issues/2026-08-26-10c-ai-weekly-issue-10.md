@@ -1,0 +1,3 @@
+Your research brief came through empty. I cannot write this week's issue without the verified research, because the standing rules forbid inventing developments, statistics, or quotes, and every item needs a named source with a working link.
+
+Please paste the research brief content into the prompt: headlines, dates, URLs, statistics, and any flags about weak sources. I will then produce Issue #10 exactly to the template, with no bare URLs and no content beyond what you supply.
