@@ -72,6 +72,8 @@ def run_research(cfg: Config, system: str | None = None) -> LLMResponse:
         return provider.generate(base_prompt, system=system, web_search=False)
 
     queries = _generate_queries(cfg, provider, system, today, since)
+    if not queries:
+        raise RuntimeError("research: query generation returned no queries (LLM/provider issue).")
     results = []
     seen = set()
     for q in queries:
@@ -85,6 +87,10 @@ def run_research(cfg: Config, system: str | None = None) -> LLMResponse:
                 seen.add(r.url)
                 results.append(r)
 
+    if not results:
+        raise RuntimeError(
+            "research: no search results found. Check TAVILY_API_KEY and Tavily quota/status."
+        )
     blocks, citations = [], []
     for i, r in enumerate(results, 1):
         blocks.append(

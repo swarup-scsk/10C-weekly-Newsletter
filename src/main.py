@@ -36,6 +36,33 @@ def human_date(d: date) -> str:
         return d.strftime("%A, %d %B %Y")   # Windows fallback
 
 
+
+_REFUSAL_MARKERS = (
+    "research brief came through empty", "cannot write this week", "please paste",
+    "paste the research", "came through empty",
+)
+
+
+def _validate_or_abort(markdown: str) -> None:
+    """Refuse to publish a broken/empty issue (e.g. when research returned nothing)."""
+    text = (markdown or "").strip()
+    low = text.lower()
+    problems = []
+    if len(text) < 800:
+        problems.append("issue is too short")
+    if "## headline of the week" not in low:
+        problems.append("missing 'Headline of the week' section")
+    if "http" not in low:
+        problems.append("no source links present")
+    if any(m in low for m in _REFUSAL_MARKERS):
+        problems.append("looks like a refusal / empty-research message")
+    if problems:
+        print("[abort] generated issue failed validation: " + "; ".join(problems))
+        print("[abort] NOT publishing. Most likely the research/search step returned nothing "
+              "(check TAVILY_API_KEY and Tavily quota/status, and the [research] log lines above).")
+        raise SystemExit(2)
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Generate the 10C AI Weekly newsletter.")
     parser.add_argument("--config", default="config.yaml")
@@ -65,6 +92,9 @@ def main(argv: list[str] | None = None) -> int:
     print(f"[generate] provider={cfg.get('generate.provider')} model={cfg.get('generate.model')}")
     markdown = run_generate(cfg, brief, issue_number=issue_number,
                             issue_date=human_date(today))
+
+    # Guard: never publish a broken/empty issue.
+    _validate_or_abort(markdown)
 
     # Stage 3: publish
     publisher = get_publisher(cfg, force_markdown_file=args.dry_run)

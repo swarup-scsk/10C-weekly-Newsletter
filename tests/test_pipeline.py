@@ -21,7 +21,9 @@ class _MockProvider:
         pass
 
     def generate(self, prompt, system=None, web_search=False, max_searches=8):
-        return LLMResponse(text="# 10C AI Weekly\n\n**Issue #1**\n\nMock body.\n", citations=[])
+        md = ("# 10C AI Weekly\n\n**Issue #1**\n\n## Headline of the week\n\n"
+              "A verified development this week, see [source](https://example.com/a). " * 40)
+        return LLMResponse(text=md, citations=[])
 
 
 def test_compute_issue_number():

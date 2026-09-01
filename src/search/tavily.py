@@ -21,8 +21,11 @@ class TavilySearch(SearchProvider):
         self.search_depth = search_cfg.get("search_depth", "basic")
 
     def search(self, query: str) -> list[SearchResult]:
+        api_key = os.environ.get("TAVILY_API_KEY", "")
+        if not api_key:
+            raise RuntimeError("TAVILY_API_KEY is not set.")
         payload = {
-            "api_key": os.environ.get("TAVILY_API_KEY", ""),
+            "api_key": api_key,
             "query": query,
             "topic": self.topic,
             "days": self.days,
